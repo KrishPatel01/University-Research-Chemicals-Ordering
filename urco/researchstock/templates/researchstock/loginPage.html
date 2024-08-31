@@ -4,13 +4,13 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login Page</title>
-   <!--Made with love by Mutiullah Samim -->
 
 	<!--Bootsrap 4 CDN-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -23,10 +23,10 @@
 
 <style>
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
+<!--@import url('https://fonts.googleapis.com/css?family=Numans');-->
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-image: url('{% static 'images/download.png' %}');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -43,7 +43,8 @@ height: 370px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color: rgba(255,255,255,1) !important;
+border:0px;
 }
 
 .social_icon span{
@@ -57,8 +58,8 @@ color: white;
 cursor: pointer;
 }
 
-.card-header h3{
-color: white;
+.card-header{
+background-color: #011c2c;
 }
 
 .social_icon{
@@ -104,12 +105,16 @@ background-color: white;
 }
 
 .links{
-color: white;
+color: #011c2c;
 }
 
 .links a{
 margin-left: 4px;
 }
+
+.logo-log{
+	width: 130px;
+	}
 </style>
 </head>
 <body style="background-color: #ff376e;">
@@ -125,12 +130,7 @@ margin-left: 4px;
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					<span><i class="fab fa-twitter-square"></i></span>
-				</div>
+				<img src="{% static 'images/flinder-logo_white.png' %}" class="logo-log ml-3 img-fluid" alt="Responsive image">
 			</div>
 			<div class="card-body">
 				<form action="/researchstock/login/" method="POST">
@@ -147,9 +147,9 @@ margin-left: 4px;
 						</div>
 						<input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="password" required>
                     </div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div>
+<!--					<div class="row align-items-center remember">-->
+<!--						<input type="checkbox">Remember Me-->
+<!--					</div>-->
 					<div class="form-group">
 						{% csrf_token %}
 						<button type="submit" class="btn float-right login_btn" data-toggle="modal" data-target="#loginModal">
@@ -161,10 +161,10 @@ margin-left: 4px;
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="/researchstock/signUpPage/" style="color: #30ad2b">Sign Up</a>
+					Don't have an account?<a href="/researchstock/signUpPage/" style="color: #972bad">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center" d>
-                    <a href="#" style="color: #ffd0d0">Forgot your password?</a>
+                    <a href="#" style="color: #ff3d3d">Forgot your password?</a>
 				</div>
 			</div>
 		</div>
