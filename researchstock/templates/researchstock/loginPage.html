@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--&lt;!&ndash; <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> &ndash;&gt;-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
 <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
@@ -5,6 +6,14 @@
 
 <!DOCTYPE html>
 {% load static %}
+=======
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+>>>>>>> origin/master
 <html>
 <head>
 
@@ -20,15 +29,23 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 	<!--Custom styles-->
+<<<<<<< HEAD
 <!--    <link rel="stylesheet" type="text/css" href="styles.css">-->
+=======
+    <link rel="stylesheet" type="text/css" href="styles.css">
+>>>>>>> origin/master
 
 <style>
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
+<<<<<<< HEAD
 <!--background-image: url("{% static 'images/Making-a-difference-1920x750_base-02.jpg' %}");-->
 background-image: url('https://researchnow.flinders.edu.au/skin/searchBackdropImage/');
+=======
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+>>>>>>> origin/master
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -114,8 +131,13 @@ margin-left: 4px;
 }
 </style>
 </head>
+<<<<<<< HEAD
 <body style="background-image: url('https://researchnow.flinders.edu.au/skin/searchBackdropImage/');">
  {% for message in messages  %}
+=======
+<body style="background-color: #ff376e;">
+    {% for message in messages  %}
+>>>>>>> origin/master
 <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
 	  <strong>Message : </strong> {{ message }}
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -127,12 +149,21 @@ margin-left: 4px;
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
+<<<<<<< HEAD
 				<h3>Sign In<img class="ml-3" src="https://researchnow.flinders.edu.au/skin/headerImage/"> </h3>
 <!--				<div class="d-flex justify-content-end social_icon">-->
 <!--					<span><i class="fab fa-facebook-square"></i></span>-->
 <!--					<span><i class="fab fa-google-plus-square"></i></span>-->
 <!--					<span><i class="fab fa-twitter-square"></i></span>-->
 <!--				</div>-->
+=======
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+>>>>>>> origin/master
 			</div>
 			<div class="card-body">
 				<form action="/researchstock/login/" method="POST">
