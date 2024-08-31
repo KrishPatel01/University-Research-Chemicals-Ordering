@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import CharField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -34,45 +35,72 @@ def save_user_profile(sender, instance, **kwargs):
 class UserRole(models.Model):
     role_id = models.IntegerField(default=0)
     role_name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.role_name
 
 class Institute(models.Model):
     institute_id = models.IntegerField(default=0)
     institute_name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.institute_name
 
 class ResearchCenter(models.Model):
     center_id = models.CharField(max_length=10)
     center_name = models.CharField(max_length=100)
     institute_id = models.ForeignKey(Institute, on_delete=models.CASCADE, null=True, blank=True)
+    def __str__(self):
+        return self.center_name
 
 class Laboratory(models.Model):
     lab_id = models.CharField(max_length=10)
     lab_name = models.CharField(max_length=50)
     center_id = models.ForeignKey(ResearchCenter, on_delete=models.CASCADE, null=True, blank=True)
+    def __str__(self):
+        return self.lab_name
 
 class StorageLocation(models.Model):
     storage_location_id = models.CharField(max_length=10)
     storage_location_name = models.CharField(max_length=50)
     location_id = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True, blank=True)
+    def __str__(self):
+        return self.storage_location_name
 
 class StorageLevel(models.Model):
     storage_level_id = models.IntegerField(default=0)
     storage_level = models.CharField(max_length=50)
+    def __str__(self):
+        return self.storage_level
 
 class RiskCategory(models.Model):
     risk_category_id = models.IntegerField(default=0)
     risk_category = models.CharField(max_length=20)
     role_id = models.ForeignKey(StorageLevel, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.risk_category
 
 class Chemical(models.Model):
     chemical_id = models.CharField(max_length=10)
     common_name = models.CharField(max_length=50)
     systematic_name = models.CharField(max_length=50)
     risk_category = models.ForeignKey(RiskCategory, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.common_name
 
 class OrderItem(models.Model):
     order_id = models.AutoField(primary_key=True)
     chemical_id = models.ForeignKey(Chemical, on_delete= models.CASCADE)
     required_amount = models.IntegerField(default=1)
+    uom = models.CharField(max_length=10, null=False)
+
+    def __str__(self):
+        return self.order_id
+
+class Stock(models.Model):
+    stock_id = models.CharField(max_length=10, null=False)
+    stock_date = models.DateField(default=datetime.date.today)
+
+    def __str__(self):
+        return self.stock_id
 
 
 DISPOSAL_STATUS = {
@@ -80,17 +108,16 @@ DISPOSAL_STATUS = {
     ('DISPOSED', 'Disposed'),
 }
 
-# class StockItem(models.Model):
-#     stock_id = models.CharField(max_length=10, null=False)
-#     chemical_id = models.ForeignKey(Chemical, on_delete=models.CASCADE)
-#     initial_stock = models.IntegerField(default=0)
-#     Current_stock = models.IntegerField(default=0)
-#     disposal_date = models.DateField(default=datetime.date.today)
-#     disposal_status = models.CharField(choices=DISPOSAL_STATUS, default='Not yet')
-#     storage_location = models.ForeignKey(StorageLocation, on_delete=models.CASCADE)
-#     storage_level = models.ForeignKey(StorageLevel, on_delete=models.CASCADE)
-
-
+class StockItem(models.Model):
+    stock_id = models.CharField(max_length=10, null=False)
+    chemical_id = models.ForeignKey(Chemical, on_delete=models.CASCADE)
+    initial_stock = models.IntegerField(default=0)
+    Current_stock = models.IntegerField(default=0)
+    uom = models.CharField(max_length=10, null=False)
+    disposal_date = models.DateField(default=datetime.date.today)
+    disposal_status = models.CharField(choices=DISPOSAL_STATUS, default='Not yet')
+    storage_location = models.ForeignKey(StorageLocation, on_delete=models.CASCADE)
+    storage_level = models.ForeignKey(StorageLevel, on_delete=models.CASCADE)
 
 
 
